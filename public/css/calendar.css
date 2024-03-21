@@ -1,0 +1,240 @@
+.md-tooltip .mbsc-popup-content {
+    padding: 0;
+}
+
+.md-tooltip {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.md-tooltip-header {
+    padding: 12px 16px;
+    color: var(--jet);
+}
+
+.md-tooltip-info {
+    padding: 16px 16px 60px 16px;
+    position: relative;
+    line-height: 32px;
+}
+
+.md-tooltip-time,
+.md-tooltip-status-button {
+    float: right;
+}
+
+.md-tooltip-title {
+    margin-bottom: 15px;
+}
+
+.md-tooltip-text {
+    font-weight: 300;
+}
+
+.md-tooltip-info .mbsc-button {
+    font-size: 14px;
+    margin: 0;
+}
+
+.md-tooltip-info .mbsc-button.mbsc-material {
+    font-size: 12px;
+}
+
+.md-tooltip-view-button {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+}
+
+.md-tooltip-delete-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+
+.md-switching-view-cont .mbsc-segmented {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.md-switching-view-cont .mbsc-calendar-grid-item {
+    height: 490px;
+    box-sizing: border-box;
+}
+
+.cal-header-picker {
+    flex: 1 0 auto;
+}
+
+.cal-header-nav {
+    width: 200px;
+}
+
+/* windows header order */
+
+.mbsc-windows.cal-header-nav {
+    order: 1;
+}
+
+.mbsc-windows.cal-header-prev {
+    order: 2;
+}
+
+.mbsc-windows.cal-header-next {
+    order: 4;
+}
+
+.mbsc-windows .cal-header-picker {
+    order: 5;
+}
+
+.mbsc-windows .cal-header-today {
+    order: 3;
+}
+
+.mbsc-windows.mbsc-eventcalendar.blur,
+.mbsc-windows.mbsc-calendar-slide,
+.mbsc-windows.mbsc-schedule-wrapper {
+    background: rgba(0, 0, 0, 0) !important;
+}
+
+.mbsc-windows.mbsc-segmented-button.mbsc-button.mbsc-selected {
+    background: var(--prussian-blue) !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-segmented-button.mbsc-button.mbsc-selected {
+    background: var(--sunglow) !important;
+    color: var(--jet) !important;
+}
+
+.mbsc-windows.mbsc-segmented-button.mbsc-button {
+    background: #FFFFFF80 !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-segmented-button.mbsc-button {
+    background: #00000040 !important;
+    color: var(--white) !important;
+}
+
+.mbsc-windows.mbsc-schedule-event,
+.mbsc-windows.mbsc-calendar-label {
+    color: var(--sky-blue) !important;
+}
+
+.mbsc-windows.mbsc-calendar-label-inner,
+.mbsc-windows.mbsc-schedule-event-inner {
+    color: var(--jet) !important;
+}
+
+.mbsc-calendar-width-md .mbsc-schedule-event-title {
+    font-size: 1.2rem !important;
+    padding: 0.2rem 0.5rem !important;
+}
+
+.mbsc-calendar-width-md .mbsc-schedule-event-range {
+    font-size: 1rem !important;
+    padding: 0.2rem 0.5rem !important;
+}
+
+.mbsc-windows.mbsc-calendar-today {
+    color: var(--prussian-blue) !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-calendar-today {
+    color: var(--white) !important;
+}
+
+.mbsc-windows.mbsc-selected .mbsc-calendar-cell-inner {
+    background: #FFFFFF80 !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-selected .mbsc-calendar-cell-inner {
+    background: #00000040 !important;
+}
+
+.mbsc-windows.mbsc-schedule-header-day-today {
+    color: var(--prussian-blue) !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-schedule-header-day-today {
+    color: var(--sunglow) !important;
+}
+
+.mbsc-windows.mbsc-schedule-header-dayname.mbsc-selected::after {
+    background: var(--sunglow) !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-calendar-day-text,
+.dark-mode .mbsc-windows.mbsc-schedule-header-day,
+.dark-mode .mbsc-windows.mbsc-schedule-all-day-text,
+.dark-mode .mbsc-schedule-time {
+    color: var(--white) !important;
+}
+
+.mbsc-windows a {
+    color: var(--sky-blue) !important;
+    font-size: 1rem !important;
+}
+
+.mbsc-popup-content {
+    padding: 2%;
+}
+
+.dark-mode .mbsc-popup-body-round,
+.dark-mode .mbsc-windows.mbsc-popup-button.mbsc-button-flat{
+    background: var(--jet) !important;
+    color: var(--white) !important;
+
+    border-color: transparent !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-calendar-button.mbsc-button.mbsc-font {
+    color: var(--white);
+}
+
+.mbsc-windows.mbsc-eventcalendar {
+    background: none !important;
+}
+
+.cal-footer {
+    display: flex;
+    margin: 2% 0 2% auto;
+    padding-right: 2%;
+}
+
+.mbsc-font {
+    font-family: "Open Sans" !important;
+}
+
+.mbsc-windows.mbsc-calendar-height-md .mbsc-calendar-week-day,
+.mbsc-windows.mbsc-calendar-width-md .mbsc-calendar-day,
+.mbsc-windows.mbsc-calendar-width-md .mbsc-calendar-day:after {
+    border-color: transparent !important;
+}
+
+.mbsc-windows.mbsc-popup, .mbsc-windows.mbsc-popup-arrow {
+    background: #fff;
+    border-color: transparent !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-popup, .mbsc-windows.mbsc-popup-arrow {
+    background: var(--jet) !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-calendar-height-md .mbsc-calendar-week-day,
+.dark-mode .mbsc-windows.mbsc-calendar-width-md .mbsc-calendar-day,
+.dark-mode .mbsc-windows.mbsc-calendar-width-md .mbsc-calendar-day:after {
+    border-color: #333333 !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-schedule-all-day-item::after, .mbsc-windows.mbsc-schedule-column, .mbsc-windows.mbsc-schedule-item, .mbsc-windows.mbsc-schedule-resource, .mbsc-windows.mbsc-schedule-resource-group, .mbsc-windows.mbsc-schedule-time-col, .mbsc-windows.mbsc-timeline-column, .mbsc-windows.mbsc-timeline-day::after, .mbsc-windows.mbsc-timeline-footer, .mbsc-windows.mbsc-timeline-footer-column, .mbsc-windows.mbsc-timeline-footer-date, .mbsc-windows.mbsc-timeline-footer-week, .mbsc-windows.mbsc-timeline-header, .mbsc-windows.mbsc-timeline-header-column, .mbsc-windows.mbsc-timeline-header-date, .mbsc-windows.mbsc-timeline-header-month, .mbsc-windows.mbsc-timeline-header-week, .mbsc-windows.mbsc-timeline-resource, .mbsc-windows.mbsc-timeline-resource-footer-cont, .mbsc-windows.mbsc-timeline-resource-header-cont, .mbsc-windows.mbsc-timeline-row, .mbsc-windows.mbsc-timeline-row-date, .mbsc-windows.mbsc-timeline-row-group::after, .mbsc-windows.mbsc-timeline-sidebar-footer-cont, .mbsc-windows.mbsc-timeline-sidebar-header-cont, .mbsc-windows.mbsc-timeline-sidebar-resource, .mbsc-windows.mbsc-timeline-slot-header, .mbsc-windows.mbsc-timeline-slots,
+.dark-mode .mbsc-windows.mbsc-schedule-time-wrapper, .dark-mode .mbsc-windows.mbsc-schedule-time-wrapper-end, .dark-mode .mbsc-windows.mbsc-schedule-header-day, .dark-mode .mbsc-windows.mbsc-schedule-header-day.mbsc-ltr, .dark-mode .mbsc-windows.mbsc-calendar-wrapper-fixed
+{
+
+    border-color: transparent !important;
+}
+
+.dark-mode .mbsc-windows.mbsc-schedule-header-item {
+    color: var(--white) !important;
+}

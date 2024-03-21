@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "watch": "node tasks/watch",
+    "run": "tasks/run/run.sh"
+  },
+  "devDependencies": {
+    "jquery": "^3.7.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.2.2",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.10",
+    "@fullcalendar/daygrid": "^6.1.10",
+    "@types/jquery": "^3.5.29",
+    "@types/jqueryui": "^1.12.21",
+    "chokidar": "^3.5.3",
+    "fullcalendar": "^6.1.10",
+    "ignore": "^5.3.0"
+  }
+}
