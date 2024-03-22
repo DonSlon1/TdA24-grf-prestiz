@@ -23,6 +23,8 @@ $router->addRoute('GET', "/lektor/interface", 'Login@interface', true);
 $router->addRoute('GET', "/lektor/interface/{uuid}", 'Login@meetinginfo', true);
 $router->addRoute('GET', "/lektori/{uuid}/rezervace", 'Meeting@meeting');
 $router->addRoute('GET', "/lektori/{uuid}/rezervace/potvrzeni", 'Meeting@success');
+$router->addRoute('GET', "/chat", 'ChatInterface@chat');
+
 
 
 // Reservation routes
