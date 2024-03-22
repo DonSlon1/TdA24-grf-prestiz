@@ -7,6 +7,7 @@ use Core\Http\Response;
 use DI\Container;
 use App\Views\View;
 use Core\Util\Auth;
+use mysql_xdevapi\Exception;
 
 class Router
 {

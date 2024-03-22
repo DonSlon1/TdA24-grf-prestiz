@@ -8,6 +8,7 @@
     }
   },
   "require": {
+    "orhanerday/open-ai": "^4.9",
     "ext-pdo": "*",
     "php-di/php-di": "^7.0",
     "spatie/icalendar-generator": "^2.6",
