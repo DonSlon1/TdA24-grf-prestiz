@@ -48,6 +48,8 @@ ENV MYSQL_DATABASE='db'
 ENV MYSQL_USER='root'
 ENV MYSQL_CHARSET='utf8mb4'
 ENV MYSQL_ROOT_HOST=0.0.0.0
+ENV OPEN_API_KEY='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'
+
 # Copy the application code to the container
 COPY my.cnf /etc/mysql/conf.d/
 COPY . .
