@@ -22,7 +22,7 @@ class Database
     {
         $this->host = getenv('MYSQL_PHP_HOST') ? getenv('MYSQL_PHP_HOST') : '127.0.0.1';
         $this->db = getenv('MYSQL_DATABASE') ? getenv('MYSQL_DATABASE') : 'db';
-        $this->password = getenv('MYSQL_ROOT_PASSWORD') ? getenv('MYSQL_ROOT_PASSWORD') : 'root';
+        $this->password = getenv('MYSQL_ROOT_PASSWORD') ? getenv('MYSQL_ROOT_PASSWORD') : '';
         $this->user = getenv('MYSQL_USER') ? getenv('MYSQL_USER') : 'root';
         $this->charset = getenv('MYSQL_CHARSET') ? getenv('MYSQL_CHARSET') : 'utf8mb4';
         $this->dns = "mysql:host=$this->host;dbname=$this->db;charset=$this->charset";
