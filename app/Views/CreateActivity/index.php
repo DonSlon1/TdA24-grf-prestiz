@@ -40,15 +40,31 @@ include_once __DIR__ . '/../nav.php';
             <label for="lengthMax">Maximální délka:</label>
             <input type="number" id="lengthMax" name="lengthMax" required><br><br>
 
-            <fieldset id="edLevelContainer">
-                <legend>Vzdělávací úroveň:</legend>
-                <input type="checkbox" id="secondarySchool" name="edLevel[]" value="primarySchool">
-                <label for="secondarySchool">1. stupeň ZŠ</label>
-                <input type="checkbox" id="highSchool" name="edLevel[]" value="secondarySchool">
-                <label for="highSchool">2. stupeň ZŠ</label>
-                <input type="checkbox" id="university" name="edLevel[]" value="highSchool">
-                <label for="university">Střední škola</label>
-            </fieldset><br>
+            <h4>Úroveň vzdělání</h4>
+            <div class="tags-column" id="ed-level">
+                <div class="check-list-container">
+                    <div class="checkbox-container tags">
+                        <input class="tag-checkbox" type="checkbox" name="group" id="primary">
+                        <label class="tag" for="primary">
+                            1. stupeň ZŠ
+                        </label>
+                    </div>
+
+                    <div class="checkbox-container tags">
+                        <input class="tag-checkbox" type="checkbox" name="group" id="secondary">
+                        <label class="tag" for="secondary">
+                            2. stupeň ZŠ
+                        </label>
+                    </div>
+
+                    <div class="checkbox-container tags">
+                        <input class="tag-checkbox" type="checkbox" name="group" id="high">
+                        <label class="tag" for="high">
+                            Střední škola
+                        </label>
+                    </div>
+                </div>
+            </div>
 
             <!-- Simplified representations for agenda, links, and gallery -->
             <div id="agendaContainer">
