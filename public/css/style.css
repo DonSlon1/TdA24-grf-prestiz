@@ -674,7 +674,11 @@ header img {
 /* Form */
 
 form {
-   padding: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 form h1 {
@@ -730,6 +734,11 @@ form h2 {
 .div-line > div > div {
     width: 100%;
     margin: 10px;
+}
+
+.icon-txt {
+    display: flex;
+    align-items: center;
 }
 
 .check-list {
@@ -1234,6 +1243,21 @@ select option {
 }
 
 /* Info about lecturer */
+.info {
+    padding: 1em 1.5em;
+    margin: 50px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info h3 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-align: start;
+}
+
 .info p {
     margin: 0 0 8px 20px;
     overflow-wrap: break-word;
@@ -1246,15 +1270,148 @@ select option {
 }
 
 .info div {
-    display: flex;
+    /*display: flex;*/
     margin-bottom: 30px;
 }
 
-.bio {
-    display: inline !important;
+.step-list {
+    counter-reset: step-counter;
+    list-style-type: none;
+    padding-left: 0;
+}
 
-    font-family: "Open sans";
-    font-size: 1.5rem;
+.step-list li {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 0;
+    position: relative;
+    margin-left: 20px;
+}
+
+.step-list li:before {
+    content: counter(step-counter) ".";
+    counter-increment: step-counter;
+    position: absolute;
+    left: -40px;
+    top: 0;
+}
+
+.warning {
+    border: 2px solid var(--sunglow);
+    border-radius: 5px;
+
+    background-color: rgba(254, 203, 46, 0.2);
+
+    text-align: center;
+}
+
+.time-agenda-container {
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-agenda {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Adjusted for alignment */
+    align-items: flex-start;
+    position: relative;
+    gap: 20px; /* Spacing between items */
+}
+
+.time-agenda li {
+    text-align: center;
+    position: relative;
+    padding-top: 30px;
+    flex: 0 1 calc(20% - 20px); /* Adjust flex-basis for spacing */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.time-agenda li:not(:last-child):after {
+    content: "";
+    position: absolute;
+    top: 10px; /* Adjusted to match the vertical position of the dot */
+    right: -10px; /* Half of the gap to position the line in the middle */
+    height: 2px;
+    width: calc(20px + 10%); /* Adjust width to reach the next item, considering the gap */
+    background-color: var(--sky-blue);
+    z-index: -1;
+}
+
+.time-agenda li:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--sky-blue);
+    border-radius: 50%;
+}
+
+.time-agenda li span, .time-agenda li p {
+    display: block;
+    margin: 0;
+    padding: 0 5px; /* Ensure text does not overflow on small screens */
+}
+
+/* Style for the gallery */
+.preview-img {
+    width: 100px; /* Example width, adjust as needed */
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content (Image) */
+.modal img {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    position: relative; /* For positioning the close button relative to the image */
+}
+
+/* The Close Button */
+.close {
+    position: fixed; /* Changed to fixed to position relative to viewport */
+    margin-left: -50px; /* Adjust based on the modal's alignment and image width */
+    margin-top: -30px; /* Adjust to move the button above the image */
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bio {
+    /*display: inline !important;*/
+
+    font-family: "Open sans", serif;
+    font-size: 1.2rem;
+
+    margin-left: 1%;
 }
 
 .bio a {
@@ -1269,7 +1426,7 @@ select option {
     color: var(--white);
 }
 
-.lecturer .bio {
+.card .bio {
     display: -webkit-box !important;
     -webkit-box-orient: vertical !important;
     -webkit-line-clamp: 2 !important; /* Limit to two lines */
@@ -1278,7 +1435,7 @@ select option {
     text-overflow: ellipsis !important;
 }
 
-.lecturer .bio p:first-child {
+.card .bio p:first-child {
     display: -webkit-box !important;
     -webkit-box-orient: vertical !important;
     -webkit-line-clamp: 2 !important; /* Limit to two lines */
@@ -1287,12 +1444,15 @@ select option {
     margin: 0 !important; /* Remove any default margin on the first p element */
 }
 
-.lecturer .bio p {
+.card .bio p {
     display: none;
 }
 
 
 .icon-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 50px;
 }
 
@@ -1317,19 +1477,11 @@ select option {
 }
 /* List of all lecturers */
 
-.map.small-icon {
+.group-icon.small-icon {
     margin-bottom: 15px;
 }
 
-.clock.small-icon {
-    margin-bottom: 10px;
-}
-
-.clock.big-icon {
-    margin-bottom: 15px;
-}
-
-.map.big-icon {
+.group-icon.big-icon {
     margin-bottom: 20px;
 }
 
@@ -1350,7 +1502,7 @@ select option {
     display: inline-block;
 }
 
-.lecturer {
+.card {
     display: flex;
     width: 100%;
 
@@ -1359,16 +1511,18 @@ select option {
     overflow: hidden;
 
     gap: 50px;
-    padding: 20px 5px;
+    padding: 20px 2%;
 
     border-bottom: rgba(51, 51, 51, 0.15) 2px solid;
 }
 
-.lecturer h3 {
+.card h3 {
     text-align: left;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
 }
 
-.lecturer:hover {
+.card:hover {
     border-radius: 5px;
     background: rgba(0, 0, 0, 0);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -1377,20 +1531,20 @@ select option {
 }
 
 @media screen and (max-width: 600px){
-    .lecturer {
+    .card {
         align-items: center;
     }
 
-    .lecturer h3 {
+    .card h3 {
         font-size: 2.7rem;
     }
 }
 
-.dark-mode .lecturer {
+.dark-mode .card {
     border-bottom: rgba(255, 255, 255, 0.15) 2px solid;
 }
 
-.dark-mode .lecturer:hover {
+.dark-mode .card:hover {
     box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
 }
 
@@ -1405,11 +1559,11 @@ select option {
     width: 250px;
 }
 
-.lecturer .info {
+.card .info {
     width: 100%;
 }
 
-.lecturer .info div {
+.card .info div {
     margin-bottom: 10px;
 }
 
@@ -1437,8 +1591,8 @@ select option {
 }
 
 .search-bar {
-    margin: -10px 0 20px;
-    width: 100%;
+    margin: auto;
+    width: 80%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -1467,7 +1621,7 @@ div.input-line {
 
     border-bottom: 2px solid #33333320;
 
-    width: 80%;
+    width: 100%;
     margin: 2vh 5px;
     padding: 0 20px;
 
@@ -1611,7 +1765,7 @@ textarea  {
 }
 
 @media screen and (max-width:1000px){
-    .lecturer {
+    .card {
         flex-direction: column;
     }
 }
@@ -1664,6 +1818,17 @@ textarea  {
 
 /*Tags*/
 .tags {
+    flex-wrap: wrap;
+}
+
+.tags-column {
+    width: 40% !important;
+}
+
+.tags-column > div {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 

@@ -1,0 +1,457 @@
+openapi: 3.0.2
+info:
+  title: "TdA Grandfinale"
+  version: "1.0"
+  description: "Definice API pro Grandfinále TdA"
+
+servers:
+  - url: http://{urlHash}.app.tourdeapp.cz/api
+    description: URL vaší aplikace
+    variables:
+      urlHash:
+        default: urlHash
+
+paths:
+  /activity:
+    summary: Endpointy pro práci s nekonkrétní aktivitou (všechny/nová)
+    post:
+      tags: [Vše]
+      summary: "Vytvoří novou aktivitu"
+      responses:
+        200:
+          content:
+            application-json:
+              schema:
+                $ref: "#/components/schemas/Activity"
+          description: Vytvořeno v pořádku
+        409:
+          $ref: '#/components/responses/Conflict'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalError'
+        501:
+          $ref: '#/components/responses/NotImplemented'
+        418:
+          $ref: '#/components/responses/Teapot'
+      requestBody:
+        required: true
+        description: Nová aktivita k vytvoření
+        content:
+          application-json:
+            schema:
+              $ref: '#/components/schemas/Activity'
+    get:
+      tags: [Vše]
+      summary: Vypíše všechny aktivity
+      description: Volitetně není nutno zasílat všechny sub-objekty.
+      responses:
+        200:
+          content:
+            application-json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Activity'
+          description: Všechny existující aktivity
+        500:
+          $ref: '#/components/responses/InternalError'
+        501:
+          $ref: '#/components/responses/NotImplemented'
+  /activity/{uuid}:
+    summary: Endpointy pro práci s konkrétní aktivitou
+    parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema: 
+          type: string
+          format: uuid
+    get:
+      tags: [Vše]
+      summary: Vypíše konkrétní aktivitou
+      responses:
+        200:
+          description: Objekt aktivity
+          content:
+            application-json:
+              schema:
+                $ref: '#/components/schemas/Activity'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalError'
+        501:
+          $ref: '#/components/responses/NotImplemented'
+    delete:
+      tags: [Vše]
+      summary: Smaže konkrétní aktivitu
+      responses:
+        200:
+          description: Aktivita byla smazána
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalError'
+        501:
+          $ref: '#/components/responses/NotImplemented'
+    post:
+      tags: [Vše]
+      summary: (Nehodnoceno! Dobrovolné!) Upraví konkrétní aktivitu
+      description: Všechna pole charakteru kolekce budou nahrazena. Pole, které se v zaslaném objektu neobjeví, nebude upraveno!
+      requestBody:
+        required: true
+        description: Objekt aktivity, nebo jeho část, k úpravě
+        content:
+          application-json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Activity'
+                - type: object
+                  properties:
+                    homePreparation:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Prep'
+                - type: object
+                  properties:
+                    instructions:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Instruction'
+                - type: object
+                  properties:
+                    agenda:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Agenda'
+                - type: object
+                  properties:
+                    links:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Link'
+                - type: object
+                  properties:
+                    gallery:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GalleryCategory'
+      responses:
+        200:
+          content:
+            application-json:
+              schema:
+                $ref: "#/components/schemas/Activity"
+          description: V pořádku upraveno
+        409:
+          $ref: '#/components/responses/Conflict'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalError'
+        501:
+          $ref: '#/components/responses/NotImplemented'   
+    put:
+      tags: [Vše]
+      summary: (Nehodnoceno! Dobrovolné!) Upraví konkrétní aktivitu
+      description: Všechna pole charakteru kolekce budou prodloužena. Pole, které se v zaslaném objektu neobjeví, nebude upraveno!
+      requestBody:
+        required: true
+        description: Objekt aktivity, nebo jeho část, k úpravě
+        content:
+          application-json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Activity'
+                - type: object
+                  properties:
+                    homePreparation:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Prep'
+                - type: object
+                  properties:
+                    instructions:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Instruction'
+                - type: object
+                  properties:
+                    agenda:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Agenda'
+                - type: object
+                  properties:
+                    links:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Link'
+                - type: object
+                  properties:
+                    gallery:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GalleryCategory'
+      responses:
+        200:
+          content:
+            application-json:
+              schema:
+                $ref: "#/components/schemas/Activity"
+          description: V pořádku upraveno
+        409:
+          $ref: '#/components/responses/Conflict'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalError'
+        501:
+          $ref: '#/components/responses/NotImplemented'
+
+components:
+  responses:
+    NotFound:
+      description: "Daný zdroj nebyl nalezen"
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Požadavek odeslaný klientem nebylo možno zpracoval jelikož byl špatně formátovaný, nebo jinak neodpovídal specifikaci
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    AuthRequired:
+      description: Pro zpracování požadaku je potřeba se autentizovat
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadAuth:
+      description: K požadavku byla přiložena nevalidní autentizace
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: Požadavek nebylo možno zpracovat z důvodu konfliktu s aktuálním stavem serveru
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Došlo k interní chybě serveru, která není specifická pro požadavek. TENTO STAV BY NEMĚL NASTAT!
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotImplemented:
+      description: Server tuto metodu neimplementuje, přestože je obsažena ve specifikaci
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Teapot:
+      description: Jsem čajník! Kávu ti dělat nebudu!
+      content:
+        application-json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 599
+          description: HTTP kód chyby
+        message:
+          type: string
+          example: Error message
+      required:
+        - code
+        - message
+    Activity:
+      type: object
+      properties:
+        uuid: 
+          type: string
+          format: uuid
+          example: e3b0c442-5b8b-47ba-9d8a-e4d3d2f3d974
+          description: Nebude generováno automaticky, vždy musí být součástí požadavku!
+        activityName:
+          type: string
+          description: Název aktivity
+          example: Grandfinále TdA
+        description:
+          type: string
+          description: Popis akce
+          example: Finále 24. ročníku soutěže ve vývoji webových aplikací
+        objectives:
+          type: array
+          items:
+            type: string
+          description: Jednotlivé cíle aktivity.
+          example: [Vyzkoušet si komunikovat s fiktivním klientem., Naučit se řídit projekt.]
+        classStructure:
+          type: string
+          enum:
+            - Individual
+            - Group
+            - All
+          description: Označení typu skupinové aktivity
+          example: Group
+        lengthMin:
+          type: integer
+          description: Minimální očekávaná délka akce v minutách
+          example: 500
+        lengthMax:
+          type: integer
+          description: Maximální očekávaná délka akce v minutách
+          example: 700
+        edLevel:
+          type: array
+          items:
+            enum:
+              - primarySchool
+              - secondarySchool
+              - highSchool
+            type: string
+          description: Informace o doporučené úrovni žáka
+          example: [secondarySchool, highSchool]
+        tools:
+          type: array
+          items:
+            type: string
+          description: Potřebné pomůcky
+          example: [Notebook, Plyšáček, Energie v láhvi]
+        homePreparation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prep'
+          description: Potřebné kroky k přípravě doma, před aktivitou
+        instructions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instruction'
+          description: Instrukce k zorganizování aktivity
+        agenda:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agenda'
+          description: Kroky agendy
+        links:
+          type: array
+          description: Odkazy na další relevantní materiály k aktivitě
+          items:
+            $ref: '#/components/schemas/Link'
+        gallery:
+          type: array
+          items:
+            $ref: '#/components/schemas/GalleryCategory'
+          description: Seznam kategorií v galerii
+      required:
+        - uuid
+        - activityName
+        - objectives
+        - lengthMin
+        - lengthMax
+        - classStructure
+    Prep:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Krátký název daného kroku přípravy
+          example: Naposlouchat dvouhodinový YouTube tutoriál o JS
+        warn:
+          type: string
+          description: Případná upozornění k danému kroku přípravy
+          example: Možná bude lepší se učit TS
+        note:
+          type: string
+          description: Případné podrobnosti k danému kroku přípravy
+          example: Ty s přízvukem jsou nejlepší
+      required:
+        - title
+    Instruction:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Krátký název / shrnutí organizačního kroku
+          example: Přečíst si pořádně zadání
+        warn:
+          type: string
+          description: Případná upozornění k organizačního kroku
+          example: POŘÁDNĚ
+        note:
+          type: string
+          description: Případné podrobnosti k organizačního kroku
+          example: OpenAI dokumentace se taky může hodit
+      required:
+        - title
+    Agenda:
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: Délka trvání daného bodu agendy v minutách
+          example: 600
+        title:
+          type: string
+          description: Název daného kroku agendy
+          example: Programování
+        description:
+          type: string
+          description: Podrobnosti k danému kroku agendy
+          example: Taky budeme chodit na klientské a mentorské schůzky
+      required:
+        - duration
+        - title
+    GalleryCategory:
+      type: object
+      description: Kategorie v galerii
+      properties:
+        title:
+          type: string
+          description: Název kategorie
+          example: Fotky z průběhu
+        images:
+          type: array
+          description: Seznam obrázků
+          items:
+            $ref: '#/components/schemas/Image'
+      required:
+        - title
+    Image:
+      type: object
+      minProperties: 1
+      properties:
+        lowRes:
+          type: string
+          description: URL obrázku s nižším rozlišením
+          format: url
+          example: https://picsum.photos/seed/a/200
+        highRes: 
+          type: string
+          description: URL obrázku s vysokým rozlišením
+          format: url
+          example: https://picsum.photos/seed/a/1200
+    Link:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Zobrazitelný název odkazu
+          example: Tour de App
+        url:
+          type: string
+          description: URL odkazu
+          format: url
+          example: https://tourdeapp.cz
+      required:
+        - url

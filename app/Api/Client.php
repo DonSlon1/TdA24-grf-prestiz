@@ -15,7 +15,7 @@ class Client extends Controller
         $this->openAi = new OpenAi($this->integration->getToken());
     }
 
-    public function sendPrompt(array $messages, int $count = 1)
+    public function sendPrompt(array $messages, int $count = 1) : array
     {
         $response = $this->openAi->chat(
             [
