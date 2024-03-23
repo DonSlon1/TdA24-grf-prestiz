@@ -64,6 +64,21 @@ class Activity extends Entities
     #[JoinColumn(name: 'gallery_activity', referencedColumnName: 'uuid')]
     private Collection $gallery;
 
+    #[Column(type: 'boolean')]
+    private bool $approved = false;
+
+
+    public function isApproved(): bool
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(bool $approved): self
+    {
+        $this->approved = $approved;
+        return $this;
+    }
+
     public function getUuid() : string
     {
         return $this->uuid;

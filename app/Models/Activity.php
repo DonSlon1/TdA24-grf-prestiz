@@ -117,9 +117,13 @@ readonly class Activity extends Model
         return $activity;
         // Return the created Activity entity
     }
-    public function getAll(): array
+    public function getAll(bool $needApproved=true): array
     {
-        $activities = $this->entityManager->getRepository(ActivityEntity::class)->findAll();
+        if ($needApproved){
+            $activities = $this->entityManager->getRepository(ActivityEntity::class)->findBy(['approved' => true]);
+        }else {
+            $activities = $this->entityManager->getRepository(ActivityEntity::class)->findAll();
+        }
 
         return $this->convertToArray($activities);
     }
@@ -129,9 +133,13 @@ readonly class Activity extends Model
         $this->entityManager->remove($activity);
         $this->entityManager->flush();
     }
-    public function getById(string $uuid): array|null
+    public function getById(string $uuid,bool $neadBeApproved = true): array|null
     {
-       $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid]);
+        if ($neadBeApproved){
+            $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid,'approved' => true]);
+        }else{
+            $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid]);
+        }
          if ($activity === null) {
              return null;
          }

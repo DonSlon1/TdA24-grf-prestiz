@@ -43,7 +43,7 @@ class Activities extends Controller
             return;
         }
 
-        $activity = $this->activityModel->getById($uuid)[0] ?? null;
+        $activity = $this->activityModel->getById($uuid,false)[0] ?? null;
         if ($activity === null) {
             $this->notFound();
             return;

@@ -37,6 +37,7 @@ class Activity extends Controller
             return;
         }
         $activity =$this->activityModel->create($request->getBody());
+        $activity = $this->activityModel->getById($activity->getUuid(),false)[0];
 
         Response::writeJsonBody($activity)->setStatusCode(200)->send();
     }

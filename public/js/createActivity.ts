@@ -77,6 +77,7 @@ function validateForm(): boolean {
     return true;
 }
 
+// @ts-ignore
 function collectFormData(): CustomFormData {
     const uuid = (document.getElementById('uuid') as HTMLInputElement).value;
     const activityName = (document.getElementById('activityName') as HTMLInputElement).value;
