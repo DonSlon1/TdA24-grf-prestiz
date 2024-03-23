@@ -28,5 +28,5 @@
                 </div>
             </div>
         </div>
-        <a class="medium button right-align" href="/lektori/<?php echo $item['uuid'] ?? "" ?>"> Zjistit více</a>
+        <a class="medium button right-align" href="aktivita"> Zjistit více</a>
     </div>

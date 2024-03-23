@@ -6,6 +6,8 @@ $router = new Core\Router();
 $router->addRoute('GET', "/chat", 'ChatInterface@chat');
 $router->addRoute('GET', "/aktivity", 'Activities@allActivities');
 $router->addRoute('GET', '/', 'Home@index');
+$router->addRoute('GET', '/aktivita', 'Activities@singleActivity');
+
 // Add more routes as needed
 
 //add routers for open api connection
