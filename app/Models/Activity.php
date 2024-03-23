@@ -117,10 +117,19 @@ readonly class Activity extends Model
 
         return $this->convertToArray($activities);
     }
+    public function delete(string $activity): void
+    {
+        $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $activity]);
+        $this->entityManager->remove($activity);
+        $this->entityManager->flush();
+    }
     public function getById(string $uuid): array|null
     {
        $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid]);
          if ($activity === null) {
+             return null;
+         }
+         if (empty($activity)) {
              return null;
          }
 
