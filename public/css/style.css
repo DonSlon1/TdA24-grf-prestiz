@@ -736,6 +736,11 @@ form h2 {
     margin: 10px;
 }
 
+.icon-txt {
+    display: flex;
+    align-items: center;
+}
+
 .check-list {
     display: flex;
 
@@ -1273,7 +1278,7 @@ select option {
     color: var(--white);
 }
 
-.lecturer .bio {
+.card .bio {
     display: -webkit-box !important;
     -webkit-box-orient: vertical !important;
     -webkit-line-clamp: 2 !important; /* Limit to two lines */
@@ -1282,7 +1287,7 @@ select option {
     text-overflow: ellipsis !important;
 }
 
-.lecturer .bio p:first-child {
+.card .bio p:first-child {
     display: -webkit-box !important;
     -webkit-box-orient: vertical !important;
     -webkit-line-clamp: 2 !important; /* Limit to two lines */
@@ -1291,7 +1296,7 @@ select option {
     margin: 0 !important; /* Remove any default margin on the first p element */
 }
 
-.lecturer .bio p {
+.card .bio p {
     display: none;
 }
 
@@ -1321,7 +1326,7 @@ select option {
 }
 /* List of all lecturers */
 
-.map.small-icon {
+.group-icon.small-icon {
     margin-bottom: 15px;
 }
 
@@ -1333,7 +1338,7 @@ select option {
     margin-bottom: 15px;
 }
 
-.map.big-icon {
+.group-icon.big-icon {
     margin-bottom: 20px;
 }
 
@@ -1354,7 +1359,7 @@ select option {
     display: inline-block;
 }
 
-.lecturer {
+.card {
     display: flex;
     width: 100%;
 
@@ -1363,16 +1368,18 @@ select option {
     overflow: hidden;
 
     gap: 50px;
-    padding: 20px 5px;
+    padding: 20px 2%;
 
     border-bottom: rgba(51, 51, 51, 0.15) 2px solid;
 }
 
-.lecturer h3 {
+.card h3 {
     text-align: left;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
 }
 
-.lecturer:hover {
+.card:hover {
     border-radius: 5px;
     background: rgba(0, 0, 0, 0);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -1381,20 +1388,20 @@ select option {
 }
 
 @media screen and (max-width: 600px){
-    .lecturer {
+    .card {
         align-items: center;
     }
 
-    .lecturer h3 {
+    .card h3 {
         font-size: 2.7rem;
     }
 }
 
-.dark-mode .lecturer {
+.dark-mode .card {
     border-bottom: rgba(255, 255, 255, 0.15) 2px solid;
 }
 
-.dark-mode .lecturer:hover {
+.dark-mode .card:hover {
     box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
 }
 
@@ -1409,11 +1416,11 @@ select option {
     width: 250px;
 }
 
-.lecturer .info {
+.card .info {
     width: 100%;
 }
 
-.lecturer .info div {
+.card .info div {
     margin-bottom: 10px;
 }
 
@@ -1615,7 +1622,7 @@ textarea  {
 }
 
 @media screen and (max-width:1000px){
-    .lecturer {
+    .card {
         flex-direction: column;
     }
 }

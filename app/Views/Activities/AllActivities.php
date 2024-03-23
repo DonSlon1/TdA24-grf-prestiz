@@ -116,7 +116,14 @@ include_once __DIR__ . '/../nav.php';
             </div>
 
         </form>
+    </div>
 
+    <div>
+        <?php
+         for ($i = 0; $i < 10; $i++) {
+            include __DIR__ . '/ActivityCard.php';
+        }
+        ?>
     </div>
 </div>
 <?php /*else: */?>
