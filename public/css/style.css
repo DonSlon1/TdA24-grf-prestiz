@@ -28,7 +28,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-size: 5rem;
-    margin-block-end: 0.3em;
 }
 
 h2 {
@@ -679,6 +678,7 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 form h1 {
@@ -1471,7 +1471,7 @@ div.input-line {
 
     border-bottom: 2px solid #33333320;
 
-    width: 80%;
+    width: 100%;
     margin: 2vh 5px;
     padding: 0 20px;
 
@@ -1668,6 +1668,17 @@ textarea  {
 
 /*Tags*/
 .tags {
+    flex-wrap: wrap;
+}
+
+.tags-column {
+    width: 40% !important;
+}
+
+.tags-column > div {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
