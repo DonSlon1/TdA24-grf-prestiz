@@ -53,4 +53,16 @@ class Image extends Entities
         return $this;
     }
 
+    public function getGallery() : Gallery
+    {
+        return $this->gallery;
+    }
+
+    public function setGallery(Gallery $gallery) : Image
+    {
+        $this->gallery = $gallery;
+        return $this;
+    }
+
+
 }
