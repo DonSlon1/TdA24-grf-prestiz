@@ -34,6 +34,10 @@ include_once __DIR__ . '/../nav.php';
                     <td>Activity 2</td>
                     <td>Vadný obsah</td>
                 </tr>
+                <tr class="clickable-row" data-href="page2.html">
+                    <td>Activity 2</td>
+                    <td>Duplicita</td>
+                </tr>
                 <!-- Add more rows as needed -->
                 </tbody>
             </table>
