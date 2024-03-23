@@ -10,10 +10,42 @@
     <title>Admin</title>
 </head>
 <body class="background">
-    <h1>Admin</h1>
+<?php
+include_once __DIR__ . '/../nav.php';
+?>
 
-    <div class="blur info">
+    <div class="content">
+        <h1>Admin</h1>
 
+        <div class="blur info">
+            <table>
+                <thead>
+                <tr>
+                    <th>Activity Name</th>
+                    <th>Doporučení</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="clickable-row" data-href="page1.html">
+                    <td>Activity 1</td>
+                    <td>Bezpečné</td>
+                </tr>
+                <tr class="clickable-row" data-href="page2.html">
+                    <td>Activity 2</td>
+                    <td>Vadný obsah</td>
+                </tr>
+                <tr class="clickable-row" data-href="page2.html">
+                    <td>Activity 2</td>
+                    <td>Duplicita</td>
+                </tr>
+                <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
     </div>
+
+<?php
+include_once __DIR__ . '/../footer.php';
+?>
 </body>
 </html>

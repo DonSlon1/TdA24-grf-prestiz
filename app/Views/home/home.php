@@ -19,13 +19,23 @@
 <div class="intro">
 
     <h1>AMOS</h1>
-    <h2>Zábavné učení díky jasného plánu</h2>
+    <h2>Zábavné učení s podporou AI</h2>
 
-    <div class="div-line">
-        <a class="large button" href="/aktivity">Hledat aktivitu</a>
-        <a class="large button" href="/lektori">Vytvořit aktivitu</a>
+    <div class="main-search">
+        <form class="" action="">
+            <input class="input-text" type="text" name="searchActivity" id="searchActivity" placeholder="Hledat">
+
+            <button class="search-button" type="submit">
+                <img class="small-icon" src="\icon\custom\search_black.svg" alt="search">
+                <p>Hledat</p>
+            </button>
+        </form>
     </div>
 
+    <div class="div-line">
+        <a class="medium soft" href="/aktivita/vytvorit">Vytvořit aktivitu</a>
+        <a class="medium button" href="/aktivity">Všechny aktivity</a>
+    </div>
 </div>
 
 <?php
