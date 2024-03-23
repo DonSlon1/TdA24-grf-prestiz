@@ -36,6 +36,10 @@ include_once __DIR__ . '/../nav.php';
             <form class="" action="">
                 <input class="search input-text" type="text" name="searchActivity" id="searchActivity" placeholder="Hledat">
             </form>
+            <form action="" method="get">
+                <input type="text" name="query" placeholder="Vyhledávání..." value="<?= htmlspecialchars($query) ?>">
+                <button type="submit">Vyhledat</button>
+            </form>
         </div>
 
         <form id="lecturer-form">
