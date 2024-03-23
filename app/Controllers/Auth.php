@@ -7,16 +7,12 @@ use Core\Http\Request;
 
 use App\Models\Lektor;
 use Core\Util\Auth as AuthUtil;
+use JetBrains\PhpStorm\NoReturn;
 
 class Auth extends Controller
 {
 
-    public function __construct(
-        private readonly Lektor $lektorModel
-    )
-    {
-    }
-
+    #[NoReturn]
     public function logout(Request $request): void
     {
         AuthUtil::logout();
@@ -25,21 +21,10 @@ class Auth extends Controller
     public function login(Request $request): void
     {
         header('Content-Type: application/json');
-        $data = $request->getBody();
-        $requiredFields = ['password', 'username'];
-        $this->requireParams($requiredFields, $request);
-
-        $password = $this->lektorModel->getPassword($data->username);
-        if ($password === false) {
-            $this->returnMessage(401, 'Credentials not found');
-            return;
-        }
-        if (AuthUtil::verifyPassword($data->password, $password)) {
-            $lektor = $this->lektorModel->findLectorByUsername($data->username);
-            setcookie('uuid', $lektor['uuid'], 0, '/', '');
-            AuthUtil::login($data->username);
+        if (AuthUtil::authenticateBasic()){
             $this->returnMessage(200, 'Login successful');
-        } else {
+        }
+        else {
             $this->returnMessage(401, 'Invalid credentials');
         }
 
