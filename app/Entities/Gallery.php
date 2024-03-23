@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 #[Entity]
 class Gallery extends Entities
 {
-    #[Column(name: 'uuid', type: 'string'), Id]
+    #[Column(name: 'uuid', type: 'string',length: 50), Id]
     #[GeneratedValue(strategy: "CUSTOM"), CustomIdGenerator(class: UuidGenerator::class)]
     private string $uuid;
     #[Column(name: 'title')]
@@ -26,7 +26,12 @@ class Gallery extends Entities
 
     #[OneToMany(targetEntity: Image::class, mappedBy: 'gallery',cascade: ['persist', 'remove'])]
     #[JoinColumn(name: 'gallery_id', referencedColumnName: 'uuid')]
-    private Collection $galleryImages;
+    private Collection $image;
+
+    #[ManyToOne(targetEntity: Activity::class, inversedBy: 'gallery')]
+    #[JoinColumn(name: 'gallery_activity', referencedColumnName: 'uuid')]
+    private Activity $activity;
+
 
     public function getUuid() : string
     {
@@ -52,12 +57,12 @@ class Gallery extends Entities
 
     public function getGalleryImages() : Collection
     {
-        return $this->galleryImages;
+        return $this->image;
     }
 
     public function setGalleryImages(Collection $galleryImages) : Gallery
     {
-        $this->galleryImages = $galleryImages;
+        $this->image = $galleryImages;
         return $this;
     }
 

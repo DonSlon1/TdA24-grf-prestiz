@@ -111,4 +111,78 @@ readonly class Activity extends Model
         return $activity;
         // Return the created Activity entity
     }
+    public function getAll(): array
+    {
+        $activities = $this->entityManager->getRepository(ActivityEntity::class)->findAll();
+
+        return $this->convertToArray($activities);
+    }
+    public function getById(string $uuid): array|null
+    {
+       $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid]);
+         if ($activity === null) {
+             return null;
+         }
+
+        return $this->convertToArray([$activity]);
+    }
+
+    /**
+     * @param ActivityEntity[] $activities
+     * @return array
+     */
+    public function convertToArray(array $activities): array
+    {
+        return array_map(function (ActivityEntity $activity) {
+            return [
+                'uuid' => $activity->getUuid(),
+                'activityName' => $activity->getActivityName(),
+                'description' => $activity->getDescription(),
+                'objectives' => $activity->getObjectives(),
+                'classStructure' => $activity->getClassStructure()->value,
+                'lengthMin' => $activity->getLengthMin(),
+                'lengthMax' => $activity->getLengthMax(),
+                'edLevel' => array_map(fn(EdLevel $level) => $level->value, $activity->getEdLevel() ?? []),
+                'tools' => $activity->getTools(),
+                'homePreparation' => $activity->getHomePreparation()->map(function (HomePreparation $prep) {
+                    return [
+                        'title' => $prep->getTitle(),
+                        'warn' => $prep->getWarn(),
+                        'note' => $prep->getNote(),
+                    ];
+                })->toArray(),
+                'instructions' => $activity->getInstructions()->map(function (Instructions $instruction) {
+                    return [
+                        'title' => $instruction->getTitle(),
+                        'warn' => $instruction->getWarn(),
+                        'note' => $instruction->getNote(),
+                    ];
+                })->toArray(),
+                'agenda' => $activity->getAgenda()->map(function (Agenda $agenda) {
+                    return [
+                        'duration' => $agenda->getDuration(),
+                        'title' => $agenda->getTitle(),
+                        'description' => $agenda->getDescription(),
+                    ];
+                })->toArray(),
+                'links' => $activity->getLinks()->map(function (Links $link) {
+                    return [
+                        'title' => $link->getTitle(),
+                        'url' => $link->getUrl(),
+                    ];
+                })->toArray(),
+                'gallery' => $activity->getGallery()->map(function (Gallery $gallery) {
+                    return [
+                        'title' => $gallery->getTitle(),
+                        'images' => $gallery->getGalleryImages()->map(function (Image $image) {
+                            return [
+                                'lowRes' => $image->getLowRes(),
+                                'highRes' => $image->getHighRes(),
+                            ];
+                        })->toArray(),
+                    ];
+                })->toArray(),
+            ];
+        }, $activities);
+    }
 }

@@ -2,18 +2,12 @@
 namespace App\Entities;
 
 use Core\Entities\Entities;
-use Doctrine\ORM\Mapping\{
-    Column,
-    CustomIdGenerator,
-    Entity,
-    GeneratedValue,
-    Id,
-};
+use Doctrine\ORM\Mapping\{Column, CustomIdGenerator, Entity, GeneratedValue, Id, JoinColumn, ManyToOne};
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 #[Entity]
 class Instructions extends Entities
 {
-    #[Column(name: 'uuid', type: 'string'), Id]
+    #[Column(name: 'uuid', type: 'string',length: 50), Id]
     #[GeneratedValue(strategy: "CUSTOM"), CustomIdGenerator(class: UuidGenerator::class)]
     private string $uuid;
     #[Column(name: 'title')]
@@ -24,6 +18,10 @@ class Instructions extends Entities
 
     #[Column(name: 'note',nullable: true)]
     private ?string $note;
+
+    #[ManyToOne(targetEntity: Activity::class, inversedBy: 'instructions')]
+    #[JoinColumn(name: 'instructions', referencedColumnName: 'uuid')]
+    private Activity $activity;
 
     public function getUuid() : string
     {

@@ -2,12 +2,12 @@
 
 namespace App\Entities;
 use Core\Entities\Entities;
-use Doctrine\ORM\Mapping\{Column, CustomIdGenerator, Entity, GeneratedValue, Id, JoinColumn, ManyToMany};
+use Doctrine\ORM\Mapping\{Column, CustomIdGenerator, Entity, GeneratedValue, Id, JoinColumn, ManyToMany, ManyToOne};
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 #[Entity]
 class Image extends Entities
 {
-    #[Column(name: 'uuid', type: 'string'), Id]
+    #[Column(name: 'uuid', type: 'string',length: 50), Id]
     #[GeneratedValue(strategy: "CUSTOM"), CustomIdGenerator(class: UuidGenerator::class)]
     private string $uuid;
     #[Column(name: 'low_res',nullable: true)]
@@ -15,6 +15,10 @@ class Image extends Entities
 
     #[Column(name: 'high_res')]
     private string $highRes;
+
+    #[ManyToOne(targetEntity: Gallery::class, inversedBy: 'image')]
+    #[JoinColumn(name: 'gallery_id', referencedColumnName: 'uuid')]
+    private Gallery $gallery;
 
     public function getUuid() : string
     {

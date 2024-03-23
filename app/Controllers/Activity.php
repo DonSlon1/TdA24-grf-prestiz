@@ -36,4 +36,22 @@ class Activity extends Controller
 
         Response::writeJsonBody($activity)->setStatusCode(200)->send();
     }
+    public function getAll() : void
+    {
+        $activities = $this->activityModel->getAll();
+        Response::writeJsonBody($activities)->setStatusCode(200)->send();
+    }
+    public function get(Request $request) : void
+    {
+        if (!isset($request->getUrlParams()->uuid)) {
+            $this->returnMessage(400, 'Missing activity uuid');
+            return;
+        }
+        $activity = $this->activityModel->getById($request->getUrlParams()->uuid);
+        if ($activity === null) {
+            $this->returnMessage(404, 'Activity not found');
+            return;
+        }
+        Response::writeJsonBody($activity)->setStatusCode(200)->send();
+    }
 }
