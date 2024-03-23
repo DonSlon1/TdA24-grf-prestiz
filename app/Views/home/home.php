@@ -18,10 +18,13 @@
 
 <div class="intro">
 
-    <h1>Teacher Digital Agency</h1>
-    <h2>Rozviňte své schopnosti s osobními lektory v okolí</h2>
+    <h1>AMOS</h1>
+    <h2>Zábavné učení díky jasného plánu</h2>
 
-    <a class="large button" href="/lektori">Hledat lektora</a>
+    <div class="div-line">
+        <a class="large button" href="/lektori">Hledat aktivitu</a>
+        <a class="large button" href="/lektori">Vytvořit aktivitu</a>
+    </div>
 
 </div>
 
