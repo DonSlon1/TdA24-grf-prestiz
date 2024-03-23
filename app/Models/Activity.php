@@ -48,6 +48,7 @@ readonly class Activity extends Model
             $homePreparation->setTitle($homePreparationData['title']);
             $homePreparation->setWarn($homePreparationData['warn'] ?? null);
             $homePreparation->setNote($homePreparationData['note'] ?? null);
+            $homePreparation->setActivity($activity);
             $homePreparationCollection->add($homePreparation);
         }
         $activity->setHomePreparation($homePreparationCollection);
@@ -59,6 +60,7 @@ readonly class Activity extends Model
             $instruction->setTitle($instructionData['title']);
             $instruction->setWarn($instructionData['warn'] ?? null);
             $instruction->setNote($instructionData['note'] ?? null);
+            $instruction->setActivity($activity);
             $instructionsCollection->add($instruction);
         }
         $activity->setInstructions($instructionsCollection);
@@ -70,6 +72,7 @@ readonly class Activity extends Model
             $agenda->setDuration($agendaData['duration']);
             $agenda->setTitle($agendaData['title']);
             $agenda->setDescription($agendaData['description'] ?? null);
+            $agenda->setActivity($activity);
             $agendaCollection->add($agenda);
         }
         $activity->setAgenda($agendaCollection);
@@ -80,6 +83,7 @@ readonly class Activity extends Model
             $link = new Links();
             $link->setTitle($linkData['title'] ?? null);
             $link->setUrl($linkData['url']);
+            $link->setActivity($activity);
             $linksCollection->add($link);
         }
         $activity->setLinks($linksCollection);
@@ -89,12 +93,14 @@ readonly class Activity extends Model
         foreach ($data->gallery ?? [] as $galleryData) {
             $gallery = new Gallery();
             $gallery->setTitle($galleryData['title']);
+            $gallery->setActivity($activity);
 
             $imageCollection = new ArrayCollection();
-            foreach ($galleryData->images ?? [] as $imageData) {
+            foreach ($galleryData['images'] ?? [] as $imageData) {
                 $image = new Image();
                 $image->setLowRes($imageData['lowRes'] ?? null);
                 $image->setHighRes($imageData['highRes']);
+                $image->setGallery($gallery);
                 $imageCollection->add($image);
             }
             $gallery->setGalleryImages($imageCollection);

@@ -63,4 +63,16 @@ class Agenda extends Entities
         return $this;
     }
 
+    public function getActivity() : Activity
+    {
+        return $this->activity;
+    }
+
+    public function setActivity(Activity $activity) : Agenda
+    {
+        $this->activity = $activity;
+        return $this;
+    }
+
+
 }

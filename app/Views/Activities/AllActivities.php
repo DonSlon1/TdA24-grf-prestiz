@@ -119,13 +119,12 @@ include_once __DIR__ . '/../nav.php';
     </div>
 
     <div>
-        <?php
-         for ($i = 0; $i < 10; $i++) {
-            include __DIR__ . '/ActivityCard.php';
-        }
-        ?>
+        <?php foreach ($activities as $activity): ?>
+            <?php include __DIR__ . '/ActivityCard.php'; ?>
+        <?php endforeach; ?>
     </div>
 </div>
+
 <?php /*else: */?>
     <!--<div class="intro">
         <h2>Omlouváme se, ale na stránce se nenachází žádná aktivita.</h2>

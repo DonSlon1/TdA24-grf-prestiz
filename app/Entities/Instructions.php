@@ -67,4 +67,16 @@ class Instructions extends Entities
         return $this;
     }
 
+    public function getActivity() : Activity
+    {
+        return $this->activity;
+    }
+
+    public function setActivity(Activity $activity) : Instructions
+    {
+        $this->activity = $activity;
+        return $this;
+    }
+
+
 }
