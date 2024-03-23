@@ -17,7 +17,7 @@
             <a href="/o-nas">O nás</a>
         </li>
         <li>
-            <a href="/login">Jsem lektor</a>
+            <a href="/admin">Jsem lektor</a>
         </li>
     </ul>
 

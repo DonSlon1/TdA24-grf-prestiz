@@ -14,7 +14,7 @@ $(function () {
                 xhr.setRequestHeader('Authorization', 'Basic ' + btoa(unescape(encodeURIComponent( $username.val()+ ':' + $password.val()))));
             }
         }).done(function (data) {
-            window.location.href = '/admin';
+            window.location.href = '/admin/interface';
         }).catch(function (err) {
             showErrorDialogOneMoreTime($loginError, 'Upsík, jméno nebo heslo nebylo zadáno správně!');
         });

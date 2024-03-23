@@ -38,7 +38,7 @@ class Auth
     public static function requireLogin(): void
     {
         if (!self::isLoggedIn()) {
-            header('Location: /login');
+            header('Location: /admin');
             exit;
         }
     }

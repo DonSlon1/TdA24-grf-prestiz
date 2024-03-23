@@ -8,7 +8,7 @@
     <link href="/css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script defer src="/js/lektor/lektor.js"></script>
+    <script defer src="/js/main.js"></script>
     <script src="/js/login/login.js"></script>
     <title>Přihlášení</title>
 </head>
