@@ -17,7 +17,7 @@ include_once __DIR__ . '/../nav.php';
     <div class="content">
         <h1>Vytvořit aktivitu</h1>
 
-        <form class="blur" id="activityForm">
+        <form class="blur info" id="activityForm">
             <div class="search-bar">
                 <input class="input-text" type="text" id="activityName" name="activityName" placeholder="Název aktivity">
             </div>
@@ -34,11 +34,13 @@ include_once __DIR__ . '/../nav.php';
                 <option value="All">Všichni</option>
             </select><br><br>
 
-            <label for="lengthMin">Minimální délka:</label>
-            <input type="number" id="lengthMin" name="lengthMin" required><br><br>
+            <div class="search-bar">
+                <label for="lengthMin">Minimální délka:</label>
+                <input class="input-text" type="number" id="lengthMin" name="lengthMin" required><br><br>
 
-            <label for="lengthMax">Maximální délka:</label>
-            <input type="number" id="lengthMax" name="lengthMax" required><br><br>
+                <label for="lengthMax">Maximální délka:</label>
+                <input class="input-text" type="number" id="lengthMax" name="lengthMax" required><br><br>
+            </div>
 
             <h4>Úroveň vzdělání</h4>
             <div class="tags-column" id="ed-level">
@@ -102,11 +104,13 @@ include_once __DIR__ . '/../nav.php';
                 <button type="button" onclick="addInstruction()">+</button>
             </div><br>
 
-            <label for="uuid">UUID:</label>
-            <input type="text" id="uuid" name="uuid" title="Enter a valid UUID" required>
-            <span id="uuidError" style="color: red; display: none;">Invalid UUID format.</span>
+            <div class="search-bar">
+                <label for="uuid">UUID:</label>
+                <input class="input-text" type="text" id="uuid" name="uuid" title="Enter a valid UUID" required>
+                <span id="uuidError" style="color: red; display: none;">Invalid UUID format.</span>
+            </div>
 
-            <button type="submit">Odeslat</button>
+            <button class="medium button" type="submit">Odeslat</button>
         </form>
 
         <script src="formScript.js"></script>

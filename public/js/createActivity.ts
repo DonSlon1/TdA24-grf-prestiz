@@ -135,7 +135,7 @@ function gatherCheckboxValues(containerId: string): string[] {
     return Array.from(checkboxes).map(checkbox => checkbox.value);
 }
 
-function addDynamicSection(containerId: string, inputsInfo: Array<{label: string, name: string, placeholder: string, type?: string}>): void {
+function addDynamicSection(containerId: string, inputsInfo: Array<{label: string, name: string, placeholder: string, type?: string, class?: string}>): void {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -143,20 +143,26 @@ function addDynamicSection(containerId: string, inputsInfo: Array<{label: string
     const groupWrapper = document.createElement('div');
     groupWrapper.className = 'input-group';
 
-    inputsInfo.forEach(({ label, name, placeholder, type = 'text' }) => {
+    inputsInfo.forEach(({ label, name, placeholder, type = 'text', class: inputClass = 'input-text' }) => {
         const inputWrapper = document.createElement('div');
         inputWrapper.className = 'form-input';
+
+        // Generate a unique ID for input to associate with label
+        const uniqueId = `${name}-${Math.random().toString(36).substr(2, 9)}`;
 
         // Create and append the label
         const inputLabel = document.createElement('label');
         inputLabel.textContent = label;
+        inputLabel.setAttribute('for', uniqueId);
         inputWrapper.appendChild(inputLabel);
 
         // Create and append the input
         const input = document.createElement('input');
         input.type = type;
+        input.id = uniqueId; // Use generated unique ID
         input.name = name;
         input.placeholder = placeholder;
+        input.className = inputClass; // Apply the specified class
         inputWrapper.appendChild(input);
 
         groupWrapper.appendChild(inputWrapper);
@@ -167,7 +173,8 @@ function addDynamicSection(containerId: string, inputsInfo: Array<{label: string
     deleteButton.textContent = 'Odstranit';
     deleteButton.type = 'button';
     deleteButton.className = 'delete-button';
-    deleteButton.addEventListener('click', () => {
+    deleteButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent form submission if inside a form
         groupWrapper.remove();
     });
 
@@ -185,39 +192,39 @@ function addTool(): void {
 
 function addHomePreparation(): void {
     addDynamicSection('homePreparationsContainer', [
-        {label: 'Příprava doma - Název', name: 'homePreparation[title][]', placeholder: 'Název'},
-        {label: 'Příprava doma - Varování', name: 'homePreparation[warn][]', placeholder: 'Varování'},
-        {label: 'Příprava doma - Poznámka', name: 'homePreparation[note][]', placeholder: 'Poznámka'}
+        {label: 'Název: ', name: 'homePreparation[title][]', placeholder: 'Název'},
+        {label: 'Varování: ', name: 'homePreparation[warn][]', placeholder: 'Varování'},
+        {label: 'Poznámka: ', name: 'homePreparation[note][]', placeholder: 'Poznámka'}
     ]);
 }
 
 function addInstruction(): void {
     addDynamicSection('instructionsContainer', [
-        {label: 'Instrukce - Název', name: 'instructions[title][]', placeholder: 'Název'},
-        {label: 'Instrukce - Varování', name: 'instructions[warn][]', placeholder: 'Varování'},
-        {label: 'Instrukce - Poznámka', name: 'instructions[note][]', placeholder: 'Poznámka'}
+        {label: 'Název: ', name: 'instructions[title][]', placeholder: 'Název'},
+        {label: 'Varování: ', name: 'instructions[warn][]', placeholder: 'Varování'},
+        {label: 'Poznámka: ', name: 'instructions[note][]', placeholder: 'Poznámka'}
     ]);
 }
 
 function addAgenda(): void {
     addDynamicSection('agendaContainer', [
-        {label: 'Agenda - Délka', name: 'agenda[duration][]', placeholder: 'Délka v minutách', type: 'number'},
-        {label: 'Agenda - Název', name: 'agenda[title][]', placeholder: 'Název'},
-        {label: 'Agenda - Popis', name: 'agenda[description][]', placeholder: 'Popis'}
+        {label: 'Délka: ', name: 'agenda[duration][]', placeholder: 'Délka v minutách', type: 'number', class: 'input-text'},
+        {label: 'Název: ', name: 'agenda[title][]', placeholder: 'Název'},
+        {label: 'Popis: ', name: 'agenda[description][]', placeholder: 'Popis'}
     ]);
 }
 
 function addLink(): void {
     addDynamicSection('linksContainer', [
-        {label: 'Odkaz - Název', name: 'links[title][]', placeholder: 'Název'},
-        {label: 'Odkaz - URL', name: 'links[url][]', placeholder: 'URL'}
+        {label: 'Název: ', name: 'links[title][]', placeholder: 'Název'},
+        {label: 'URL: ', name: 'links[url][]', placeholder: 'URL'}
     ]);
 }
 
 function addGalleryItem(): void {
     addDynamicSection('galleryContainer', [
-        {label: 'Galerie - Název', name: 'gallery[title][]', placeholder: 'Název'},
-        {label: 'Galerie - Nízké rozlišení', name: 'gallery[lowRes][]', placeholder: 'URL nízkého rozlišení'},
-        {label: 'Galerie - Vysoké rozlišení', name: 'gallery[highRes][]', placeholder: 'URL vysokého rozlišení'}
+        {label: 'Název: ', name: 'gallery[title][]', placeholder: 'Název'},
+        {label: 'Nízké rozlišení: ', name: 'gallery[lowRes][]', placeholder: 'URL nízkého rozlišení'},
+        {label: 'Vysoké rozlišení: ', name: 'gallery[highRes][]', placeholder: 'URL vysokého rozlišení'}
     ]);
 }

@@ -16,6 +16,7 @@ use Core\Http\Request;
 use Core\Entities\EntitiesManager;
 use Core\Http\Response;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Exception\ORMException;
 use stdClass;
 
 readonly class Activity extends Model
@@ -208,4 +209,22 @@ readonly class Activity extends Model
             ];
         }, $activities);
     }
-}
+
+    public function approveActivity(string $uuid): bool
+    {
+        $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid]);
+
+        if (!$activity) {
+            return false;
+        }
+
+        $activity->setApproved(true);
+
+        try {
+            $this->entityManager->flush();
+        } catch (ORMException $e) {
+            return false;
+        }
+
+        return true;
+    }}
