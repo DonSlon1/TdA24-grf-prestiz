@@ -58,7 +58,7 @@ function toggleDarkMode(isAuto = false) {
     }
 
     const imagesToUpdate = [
-        ...document.getElementsByClassName("map"),
+        ...document.getElementsByClassName("group-icon"),
         ...document.getElementsByClassName('money'),
         document.getElementById('phone'),
         document.getElementById('email'),

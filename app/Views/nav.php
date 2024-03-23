@@ -10,7 +10,7 @@
     <nav>
         <div>
             <a class="nav-link" href="/">Domů</a>
-            <a class="nav-link" href="/aktivity">Lektoři</a>
+            <a class="nav-link" href="/aktivity">Aktivity</a>
             <!--<a class="nav-link" href="/o-nas">O nás</a>-->
 
             <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] != null): ?>
