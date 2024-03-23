@@ -2,11 +2,14 @@
 
 namespace Core\Util;
 
+use JetBrains\PhpStorm\NoReturn;
+
 class Auth
 {
-    private const USERNAME = 'TdA';
-    private const PASSWORD = 'd8Ef6!dGG_pv';
+    private const USERNAME = 'admin';
+    private const PASSWORD = 'tda';
 
+    #[NoReturn]
     public static function logout(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -24,7 +27,11 @@ class Auth
         }
         $username = $_SERVER['PHP_AUTH_USER'];
         $password = $_SERVER['PHP_AUTH_PW'];
-        return $username === self::USERNAME && $password === self::PASSWORD;
+        if ($username === self::USERNAME && $password === self::PASSWORD){
+            $_SESSION['logged_in'] = true;
+            return true;
+        }
+        return false;
     }
 
 
@@ -44,20 +51,13 @@ class Auth
         return isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     }
 
-    public static function login(string $username): void
+    public static function login(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION['username'] = $username;
         $_SESSION['logged_in'] = true;
     }
-
-    public static function hashPassword(string $password): string
-    {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
-
     public static function verifyPassword(string $password, string $hash): bool
     {
         return password_verify($password, $hash);
