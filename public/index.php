@@ -6,7 +6,8 @@ $router = new Core\Router();
 $router->addRoute('GET', "/chat", 'ChatInterface@chat');
 $router->addRoute('GET', "/aktivity", 'Activities@allActivities');
 $router->addRoute('GET', '/', 'Home@index');
-
+$router->addRoute('GET', '/aktivita', 'Activities@singleActivity');
+$router->addRoute('GET', '/aktivita/vytvorit', 'CreateActivity@index');
 //login routes
 $router->addRoute('GET','/admin','Login@login');
 $router->addRoute('GET','/admin/interface','Login@interface');
@@ -18,7 +19,6 @@ $router->addRoute('POST','/api/activity','Activity@post');
 $router->addRoute('GET','/api/activity','Activity@getAll');
 $router->addRoute('GET','/api/activity/{uuid}','Activity@get');
 $router->addRoute('DELETE','/api/activity/{uuid}','Activity@delete');
-$router->addRoute('GET', '/aktivita', 'Activities@singleActivity');
 
 // Add more routes as needed
 
