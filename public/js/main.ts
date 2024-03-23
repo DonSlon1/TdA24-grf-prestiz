@@ -106,3 +106,15 @@ function getCookie(name: string) {
         return parts.pop()?.split(';').shift();
     }
 }
+function toggleMobileNav() {
+    const nav = document.querySelector('nav');
+    if (nav == null) {
+        return;
+    }
+
+    if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+    } else {
+        nav.classList.add('active');
+    }
+}
