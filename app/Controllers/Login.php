@@ -30,6 +30,6 @@ class Login extends Controller
 
     public function interface(Request $request): void
     {
-        View::createWithViewFile('login/lecturer-interface.php')->render();
+        View::createWithViewFile('login/admin-interface.php')->render();
     }
 }

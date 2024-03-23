@@ -16,7 +16,7 @@ class Auth
             session_start();
         }
         session_destroy();
-        header('Location: /login');
+        header('Location: /admin');
         exit;
     }
 
@@ -38,7 +38,7 @@ class Auth
     public static function requireLogin(): void
     {
         if (!self::isLoggedIn()) {
-            header('Location: /login');
+            header('Location: /admin');
             exit;
         }
     }

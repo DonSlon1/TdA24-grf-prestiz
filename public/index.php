@@ -8,9 +8,11 @@ $router->addRoute('GET', "/aktivity", 'Activities@allActivities');
 $router->addRoute('GET', '/', 'Home@index');
 
 //login routes
-$router->addRoute('GET','/login','Login@login');
+$router->addRoute('GET','/admin','Login@login');
+$router->addRoute('GET','/admin/interface','Login@interface');
 $router->addRoute('POST','/login','Auth@login');
 $router->addRoute('GET', '/logout', 'Auth@logout');
+
 
 //activity api routes
 $router->addRoute('POST','/api/activity','Activity@post');

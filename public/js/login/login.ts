@@ -7,14 +7,14 @@ $(function () {
         e.preventDefault();
         const $username: JQuery<HTMLInputElement> = $loginForm.find('#username') as JQuery<HTMLInputElement>;
         const $password: JQuery<HTMLInputElement> = $loginForm.find('#password') as JQuery<HTMLInputElement>;
-        $.ajax('/login', {
+        $.ajax('/admin', {
             method: 'POST',
             ///set basic auth to header
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('Authorization', 'Basic ' + btoa(unescape(encodeURIComponent( $username.val()+ ':' + $password.val()))));
             }
         }).done(function (data) {
-            window.location.href = '/admin';
+            window.location.href = '/admin/interface';
         }).catch(function (err) {
             showErrorDialogOneMoreTime($loginError, 'Upsík, jméno nebo heslo nebylo zadáno správně!');
         });

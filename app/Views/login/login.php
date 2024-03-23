@@ -23,8 +23,10 @@
             <img src="/icon/TdA_ikony/SVG/TdA_ikony_studium_blue.svg" alt="studium">
         </div>
         <h1>Přihlásit se</h1>
-        <input class="input-text" id="username" type="text" placeholder="Uživatelské jméno ">
-        <input class="input-text" id="password" type="password" placeholder="Heslo">
+        <div class="search-bar">
+            <input class="input-text" id="username" type="text" placeholder="Uživatelské jméno ">
+            <input class="input-text" id="password" type="password" placeholder="Heslo">
+        </div>
         <input class="medium button" type="submit" value="Přihlásit">
         <div class="error" id="login-error" title="Chybějící data" style="display:none;">
             <p>Chybí nám některé kontaktní údaje.</p>

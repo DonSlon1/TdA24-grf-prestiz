@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/style.css" rel="stylesheet">
     <script defer src="/js/main.js"></script>
+    <script defer src="/js/gallery.js"></script>
     <title>Aktivita</title>
 </head>
 <body class="background">
@@ -48,22 +49,69 @@
 
         <div class="blur info">
             <h2>Organizace aktivity</h2>
-            <div>
+            <div class="time-agenda-container">
                 <h3>Časový plán</h3>
-                <ol class="time-agenda">
-                    <li>První krok</li>
-                    <li class="warning">Druhý krok</li>
-                    <li>Třetí krok</li>
-                </ol>
+                <ul class="time-agenda">
+                    <li>
+                        <span>První krok</span>
+                        <p>časové rozmezí</p>
+                        <p>popis kroku</p>
+                    </li>
+                    <li>
+                        <span>Druhý krok</span>
+                        <p>časové rozmezí</p>
+                        <p>popis kroku</p>
+                    </li>
+
+                    <li>
+                        <span>Třetí krok</span>
+                        <p>časové rozmezí</p>
+                    </li>
+
+                    <li>
+                        <span>Čtvrtý krok</span>
+                        <p>časové rozmezí</p>
+                    </li>
+
+                    <li>
+                        <span>Pátý krok</span>
+                        <p>časové rozmezí</p>
+                    </li>
+
+                    <li>
+                        <span>Šestý krok</span>
+                        <p>časové rozmezí</p>
+                    </li>
+
+                    <li>
+                        <span>Sedmý krok</span>
+                        <p>časové rozmezí</p>
+                    </li>
+                </ul>
             </div>
 
             <div class="div-line">
                 <div>
                     <h3>Příprava na aktivitu</h3>
                     <ol class="step-list">
-                        <li>První krok</li>
-                        <li class="warning">Druhý krok</li>
-                        <li>Třetí krok</li>
+                        <li>
+                            <span>První krok</span>
+                            <p>popis kroku</p>
+                        </li>
+                        <li>
+                            <span>Druhý krok</span>
+                            <p>popis kroku</p>
+                            <p class="warning">warning</p>
+                        </li>
+
+                        <li>
+                            <span>Třetí krok</span>
+                            <p class="warning">warning</p>
+                        </li>
+
+                        <li>
+                            <span>Čtvrtý krok</span>
+                        </li>
                     </ol>
 
                 </div>
@@ -71,14 +119,73 @@
                 <div>
                     <h3>Průběh aktivity</h3>
                     <ol class="step-list">
-                        <li>První krok</li>
-                        <li class="warning">Druhý krok</li>
-                        <li>Třetí krok</li>
+                        <li>
+                            <span>První krok</span>
+                            <p>popis kroku</p>
+                        </li>
+                        <li>
+                            <span>Druhý krok</span>
+                            <p>popis kroku</p>
+                            <p class="warning">warning</p>
+                        </li>
+
+                        <li>
+                            <span>Třetí krok</span>
+                            <p class="warning">warning</p>
+                        </li>
+
+                        <li>
+                            <span>Čtvrtý krok</span>
+                        </li>
                     </ol>
                 </div>
             </div>
+        </div>
+
+        <div class="blur info">
+            <h2>Vybavení na aktivitu</h2>
+
+            <div class="div-line">
+                <div>
+                    <h3>Seznam potřebných věcí</h3>
+                    <ul>
+                        <li>Předmět</li>
+                        <li>Předmět</li>
+                        <li>Předmět</li>
+                        <li>Předmět</li>
+                        <li>Předmět</li>
+                        <li>Předmět</li>
+                        <li>Předmět</li>
+                        <li>Předmět</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Doporučené odkazy</h3>
+                    <ul>
+                        <li><a href="">Odkaz</a></li>
+                        <li><a href="">Odkaz</a></li>
+                        <li><a href="">Odkaz</a></li>
+                        <li><a href="">Odkaz</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="blur info">
+            <h2>Galerie</h2>
+            <div id="gallery">
+                <!-- Example images -->
+                <img class="preview-img" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" data-full="path/to/high-res-image1.jpg" alt="Image 1">
+                <img class="preview-img" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" data-full="path/to/high-res-image2.jpg" alt="Image 2">
+                <!-- Add more images as needed -->
+            </div>
+        </div>
 
 
+        <div id="fullImageModal" class="modal">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="fullImage" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" alt="Full Image">
         </div>
 
     </div>

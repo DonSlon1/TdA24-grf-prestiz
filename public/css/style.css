@@ -1246,6 +1246,10 @@ select option {
 .info {
     padding: 1em 1.5em;
     margin: 50px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .info h3 {
@@ -1271,20 +1275,134 @@ select option {
 }
 
 .step-list {
-    display: block;
+    counter-reset: step-counter;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .step-list li {
-    padding: 2px 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 2px 0;
+    position: relative;
+    margin-left: 20px;
+}
+
+.step-list li:before {
+    content: counter(step-counter) ".";
+    counter-increment: step-counter;
+    position: absolute;
+    left: -40px;
+    top: 0;
 }
 
 .warning {
-    background-color: rgba(254, 203, 46, 0.5);
-    box-shadow: 0 4px 30px rgba(254, 203, 46, 0.3);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(2px);
+    border: 2px solid var(--sunglow);
+    border-radius: 5px;
 
-    border-radius: 15px;
+    background-color: rgba(254, 203, 46, 0.2);
+
+    text-align: center;
+}
+
+.time-agenda-container {
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-agenda {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Adjusted for alignment */
+    align-items: flex-start;
+    position: relative;
+    gap: 20px; /* Spacing between items */
+}
+
+.time-agenda li {
+    text-align: center;
+    position: relative;
+    padding-top: 30px;
+    flex: 0 1 calc(20% - 20px); /* Adjust flex-basis for spacing */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.time-agenda li:not(:last-child):after {
+    content: "";
+    position: absolute;
+    top: 10px; /* Adjusted to match the vertical position of the dot */
+    right: -10px; /* Half of the gap to position the line in the middle */
+    height: 2px;
+    width: calc(20px + 10%); /* Adjust width to reach the next item, considering the gap */
+    background-color: var(--sky-blue);
+    z-index: -1;
+}
+
+.time-agenda li:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--sky-blue);
+    border-radius: 50%;
+}
+
+.time-agenda li span, .time-agenda li p {
+    display: block;
+    margin: 0;
+    padding: 0 5px; /* Ensure text does not overflow on small screens */
+}
+
+/* Style for the gallery */
+.preview-img {
+    width: 100px; /* Example width, adjust as needed */
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content (Image) */
+.modal img {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    position: relative; /* For positioning the close button relative to the image */
+}
+
+/* The Close Button */
+.close {
+    position: fixed; /* Changed to fixed to position relative to viewport */
+    margin-left: -50px; /* Adjust based on the modal's alignment and image width */
+    margin-top: -30px; /* Adjust to move the button above the image */
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .bio {
