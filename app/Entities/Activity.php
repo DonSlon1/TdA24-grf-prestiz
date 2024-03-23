@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\Collection;
 #[Entity]
 class Activity extends Entities
 {
-    #[Column(name: 'uuid', type: 'string'), Id]
+    #[Column(name: 'uuid', type: 'string',length: 50), Id]
     private string $uuid;
 
     #[Column(name: 'activityName')]
@@ -53,7 +53,7 @@ class Activity extends Entities
     private Collection $instructions;
 
     #[OneToMany(targetEntity: Agenda::class, mappedBy: 'activity',cascade: ['persist', 'remove'])]
-    #[JoinColumn(name: 'agenda', referencedColumnName: 'uuid')]
+    #[JoinColumn(name: 'activity_uuid', referencedColumnName: 'uuid')]
     private Collection $agenda;
 
     #[OneToMany(targetEntity: Links::class, mappedBy: 'activity',cascade: ['persist', 'remove'])]
@@ -61,7 +61,7 @@ class Activity extends Entities
     private Collection $links;
 
     #[OneToMany(targetEntity: Gallery::class, mappedBy: 'activity',cascade: ['persist', 'remove'])]
-    #[JoinColumn(name: 'gallery', referencedColumnName: 'uuid')]
+    #[JoinColumn(name: 'gallery_activity', referencedColumnName: 'uuid')]
     private Collection $gallery;
 
     public function getUuid() : string
