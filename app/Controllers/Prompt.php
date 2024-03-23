@@ -6,13 +6,15 @@ use App\Api\Client;
 use Core\Controller;
 use Core\Http\Request;
 use Core\Http\Response;
+use App\Models\Activity;
 
 class Prompt extends Controller
 {
     private const MAX_COUNT = 3;
 
     public function __construct(
-        private readonly Client $client
+        private readonly Client $client,
+        private readonly Activity $activity
     ) {
     }
 
@@ -55,9 +57,12 @@ class Prompt extends Controller
         $prompt = $body->prompt;
         $count = $body->count;
 
+
+        $activitiesJson = json_encode($this->activity->getAll());
+
         $replies = $this->client->sendPrompt([
             ['role' => 'user', 'content' => $prompt],
-        ], $count);
+        ], $count, $activitiesJson);
 
         Response::writeJsonBody([
             "replies" => $replies

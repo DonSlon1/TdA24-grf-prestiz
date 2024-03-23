@@ -53,4 +53,16 @@
             return $this;
         }
 
+        public function getActivity() : Activity
+        {
+            return $this->activity;
+        }
+
+        public function setActivity(Activity $activity) : Links
+        {
+            $this->activity = $activity;
+            return $this;
+        }
+
+
     }

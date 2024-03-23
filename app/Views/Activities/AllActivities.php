@@ -33,12 +33,13 @@ include_once __DIR__ . '/../nav.php';
 
         <div class="search-bar">
             <h4>Chytré hledání</h4>
-            <form class="" action="">
-                <input class="search input-text" type="text" name="searchActivity" id="searchActivity" placeholder="Hledat">
+            <form action="" method="get">
+                <input class="input-text" type="text" name="query" placeholder="Vyhledávání..." value="<?= htmlspecialchars($query) ?>">
+                <button class="small button" type="submit">Vyhledat</button>
             </form>
         </div>
 
-        <form id="lecturer-form">
+        <!--<form id="lecturer-form">
             <div class="div-line">
                 <div>
                     <h4>Velikost skupiny</h4>
@@ -98,13 +99,13 @@ include_once __DIR__ . '/../nav.php';
             <div class="search-bar">
                 <h4>Doba aktivity</h4>
                 <div id="price-field">
-                    <div id="price-slider-range" data-min="<?php echo $data['min'] ?? 0 ?>"
-                         data-max="<?php echo $data['max'] ?? 0 ?>"></div>
+                    <div id="price-slider-range" data-min="<?php /*echo $data['min'] ?? 0 */?>"
+                         data-max="<?php /*echo $data['max'] ?? 0 */?>"></div>
                     <input class="text" type="number" id="min-price" name="min-price"
-                           data-minPrice="<?php echo $data['min'] ?? 0 ?>">
+                           data-minPrice="<?php /*echo $data['min'] ?? 0 */?>">
                     <p> až </p>
                     <input class="text" type="number" id="max-price" name="max-price"
-                           data-maxPrice="<?php echo $data['max'] ?? 0 ?>">
+                           data-maxPrice="<?php /*echo $data['max'] ?? 0 */?>">
                 </div>
 
                 <div id="price-range"></div>
@@ -115,17 +116,16 @@ include_once __DIR__ . '/../nav.php';
                 <input class="medium button" type="submit" value="Hledat">
             </div>
 
-        </form>
+        </form>-->
     </div>
 
     <div>
-        <?php
-         for ($i = 0; $i < 10; $i++) {
-            include __DIR__ . '/ActivityCard.php';
-        }
-        ?>
+        <?php foreach ($activities as $activity): ?>
+            <?php include __DIR__ . '/ActivityCard.php'; ?>
+        <?php endforeach; ?>
     </div>
 </div>
+
 <?php /*else: */?>
     <!--<div class="intro">
         <h2>Omlouváme se, ale na stránce se nenachází žádná aktivita.</h2>

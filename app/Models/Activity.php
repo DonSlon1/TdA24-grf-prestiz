@@ -48,6 +48,7 @@ readonly class Activity extends Model
             $homePreparation->setTitle($homePreparationData['title']);
             $homePreparation->setWarn($homePreparationData['warn'] ?? null);
             $homePreparation->setNote($homePreparationData['note'] ?? null);
+            $homePreparation->setActivity($activity);
             $homePreparationCollection->add($homePreparation);
         }
         $activity->setHomePreparation($homePreparationCollection);
@@ -59,6 +60,7 @@ readonly class Activity extends Model
             $instruction->setTitle($instructionData['title']);
             $instruction->setWarn($instructionData['warn'] ?? null);
             $instruction->setNote($instructionData['note'] ?? null);
+            $instruction->setActivity($activity);
             $instructionsCollection->add($instruction);
         }
         $activity->setInstructions($instructionsCollection);
@@ -70,6 +72,7 @@ readonly class Activity extends Model
             $agenda->setDuration($agendaData['duration']);
             $agenda->setTitle($agendaData['title']);
             $agenda->setDescription($agendaData['description'] ?? null);
+            $agenda->setActivity($activity);
             $agendaCollection->add($agenda);
         }
         $activity->setAgenda($agendaCollection);
@@ -80,6 +83,7 @@ readonly class Activity extends Model
             $link = new Links();
             $link->setTitle($linkData['title'] ?? null);
             $link->setUrl($linkData['url']);
+            $link->setActivity($activity);
             $linksCollection->add($link);
         }
         $activity->setLinks($linksCollection);
@@ -89,12 +93,14 @@ readonly class Activity extends Model
         foreach ($data->gallery ?? [] as $galleryData) {
             $gallery = new Gallery();
             $gallery->setTitle($galleryData['title']);
+            $gallery->setActivity($activity);
 
             $imageCollection = new ArrayCollection();
-            foreach ($galleryData->images ?? [] as $imageData) {
+            foreach ($galleryData['images'] ?? [] as $imageData) {
                 $image = new Image();
                 $image->setLowRes($imageData['lowRes'] ?? null);
                 $image->setHighRes($imageData['highRes']);
+                $image->setGallery($gallery);
                 $imageCollection->add($image);
             }
             $gallery->setGalleryImages($imageCollection);
@@ -111,16 +117,33 @@ readonly class Activity extends Model
         return $activity;
         // Return the created Activity entity
     }
-    public function getAll(): array
+    public function getAll(bool $needApproved=true): array
     {
-        $activities = $this->entityManager->getRepository(ActivityEntity::class)->findAll();
+        if ($needApproved){
+            $activities = $this->entityManager->getRepository(ActivityEntity::class)->findBy(['approved' => true]);
+        }else {
+            $activities = $this->entityManager->getRepository(ActivityEntity::class)->findAll();
+        }
 
         return $this->convertToArray($activities);
     }
-    public function getById(string $uuid): array|null
+    public function delete(string $activity): void
     {
-       $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid]);
+        $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $activity]);
+        $this->entityManager->remove($activity);
+        $this->entityManager->flush();
+    }
+    public function getById(string $uuid,bool $neadBeApproved = true): array|null
+    {
+        if ($neadBeApproved){
+            $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid,'approved' => true]);
+        }else{
+            $activity = $this->entityManager->getRepository(ActivityEntity::class)->findOneBy(['uuid' => $uuid]);
+        }
          if ($activity === null) {
+             return null;
+         }
+         if (empty($activity)) {
              return null;
          }
 

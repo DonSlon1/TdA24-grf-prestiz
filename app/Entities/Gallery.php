@@ -66,5 +66,27 @@ class Gallery extends Entities
         return $this;
     }
 
+    public function getImage() : Collection
+    {
+        return $this->image;
+    }
+
+    public function setImage(Collection $image) : Gallery
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    public function getActivity() : Activity
+    {
+        return $this->activity;
+    }
+
+    public function setActivity(Activity $activity) : Gallery
+    {
+        $this->activity = $activity;
+        return $this;
+    }
+
 
 }
