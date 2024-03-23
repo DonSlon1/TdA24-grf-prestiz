@@ -174,20 +174,19 @@
 
         <div class="blur info">
             <h2>Galerie</h2>
+
             <div id="gallery">
                 <!-- Example images -->
-                <img class="preview-img" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" data-full="path/to/high-res-image1.jpg" alt="Image 1">
-                <img class="preview-img" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" data-full="path/to/high-res-image2.jpg" alt="Image 2">
+                <img class="preview-img" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" data-full="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" alt="Image 1">
+                <img class="preview-img" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" data-full="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" alt="Image 2">
                 <!-- Add more images as needed -->
             </div>
+
+            <div id="fullImageModal" class="modal">
+                <span id="closeModal" class="close">&times;</span>
+                <img id="fullImage" src="" alt="Full Image">
+            </div>
         </div>
-
-
-        <div id="fullImageModal" class="modal">
-            <span id="closeModal" class="close">&times;</span>
-            <img id="fullImage" src="/icon/TdA_LOGO/TeacherDigitalAgency_LOGO_black.png" alt="Full Image">
-        </div>
-
     </div>
 
     <?php

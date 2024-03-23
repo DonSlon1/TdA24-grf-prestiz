@@ -9,7 +9,11 @@
     <script defer src="/js/main.js"></script>
     <title>Admin</title>
 </head>
-<body>
+<body class="background">
+    <h1>Admin</h1>
 
+    <div class="blur info">
+
+    </div>
 </body>
 </html>
