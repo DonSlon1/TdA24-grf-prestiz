@@ -6,6 +6,7 @@ use Core\Controller;
 use Core\Http\Request;
 use App\Models\Activity as ActivityModel;
 use Core\Http\Response;
+use JetBrains\PhpStorm\NoReturn;
 
 class Activity extends Controller
 {
@@ -32,7 +33,7 @@ class Activity extends Controller
             $this->returnMessage(400, 'Missing required fields: ' . implode(', ', $missingFields));
             return;
         }
-        if ($this->activityModel->getById($data->uuid)) {
+        if ($this->activityModel->getById($data->uuid,false)) {
             $this->returnMessage(409, 'Activity with this uuid already exists');
             return;
         }
@@ -48,7 +49,7 @@ class Activity extends Controller
             return;
         }
         $uuid = $request->getUrlParams()->uuid;
-        $activity = $this->activityModel->getById($uuid)[0]??null;
+        $activity = $this->activityModel->getById($uuid,false)[0]??null;
         if ($activity === null) {
             $this->returnMessage(404, 'Activity not found');
             return;
@@ -58,7 +59,7 @@ class Activity extends Controller
     }
     public function getAll() : void
     {
-        $activities = $this->activityModel->getAll();
+        $activities = $this->activityModel->getAll(false);
         Response::writeJsonBody($activities)->setStatusCode(200)->send();
     }
     public function get(Request $request) : void
@@ -67,11 +68,38 @@ class Activity extends Controller
             $this->returnMessage(400, 'Missing activity uuid');
             return;
         }
-        $activity = $this->activityModel->getById($request->getUrlParams()->uuid)[0]??null;
+        $activity = $this->activityModel->getById($request->getUrlParams()->uuid,false)[0]??null;
         if ($activity === null) {
             $this->returnMessage(404, 'Activity not found');
             return;
         }
         Response::writeJsonBody($activity)->setStatusCode(200)->send();
+    }
+        public function approveActivity(Request $request): void
+{
+    $uuid = $request->getUrlParams()->uuid ?? null;
+
+    if (!$uuid) {
+        $this->returnError('UUID aktivity je povinné.');
+        return;
+    }
+
+    $result = $this->activityModel->approveActivity($uuid);
+
+    if ($result === true) {
+        $this->returnSuccess('Aktivita byla úspěšně schválena.');
+    } else {
+        $this->returnError('Aktivitu se nepodařilo schválit.');
+    }
+}
+private function returnSuccess(string $message): void
+{
+    Response::writeJsonBody(['message' => $message])->send();
+    exit;
+}
+    #[NoReturn] private function returnError(string $message): void
+    {
+        Response::writeJsonBody(['error' => $message], 400)->send();
+        exit;
     }
 }

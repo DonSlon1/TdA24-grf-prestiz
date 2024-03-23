@@ -19,6 +19,7 @@ $router->addRoute('POST','/api/activity','Activity@post');
 $router->addRoute('GET','/api/activity','Activity@getAll');
 $router->addRoute('GET','/api/activity/{uuid}','Activity@get');
 $router->addRoute('DELETE','/api/activity/{uuid}','Activity@delete');
+    $router->addRoute('POST','/api/approveActivity/{uuid}','Activity@approveActivity');
 
 //activity routes for frontend
 $router->addRoute('GET', '/aktivita', 'Activities@singleActivity');
