@@ -18,7 +18,7 @@ class Activities extends Controller
 
     public function allActivities(Request $request): void
     {
-        $activities = $this->activityModel->getAll();
+        $activities = $this->activityModel->getAll(false);
         $query = $request->getQueryParams()->query ?? '';
 
         if (!empty($query)) {
