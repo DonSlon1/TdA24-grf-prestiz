@@ -10,8 +10,8 @@
     <nav>
         <div>
             <a class="nav-link" href="/">Domů</a>
-            <a class="nav-link" href="/lektori">Lektoři</a>
-            <a class="nav-link" href="/o-nas">O nás</a>
+            <a class="nav-link" href="/aktivity">Lektoři</a>
+            <!--<a class="nav-link" href="/o-nas">O nás</a>-->
 
             <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] != null): ?>
                 <a class="small button" href="/logout">Odhlásit</a>
