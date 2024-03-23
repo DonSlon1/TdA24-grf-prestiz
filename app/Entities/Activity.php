@@ -28,7 +28,7 @@ class Activity extends Entities
     /**@var $objectives string[]*/
     #[Column(name: 'objectives',type: 'json')]
     private array $objectives;
-    #[Column(name: 'description')]
+    #[Column(name: 'description',nullable: true)]
     private ?string $description;
     #[Column(name:'classStructure',type: 'string',enumType: ClassStructure::class)]
     private ClassStructure $classStructure;
@@ -38,10 +38,10 @@ class Activity extends Entities
     #[Column(name: 'lengthMax')]
     private int $lengthMax;
     /**@var $edLevel EdLevel[]*/
-    #[Column(name: 'edLevel', type: 'json', enumType: EdLevel::class)]
+    #[Column(name: 'edLevel', type: 'json', nullable: true, enumType: EdLevel::class)]
     private ?array $edLevel;
     /**@var $tools string[]*/
-    #[Column(name: 'tools',type: 'json')]
+    #[Column(name: 'tools',type: 'json',nullable: true)]
     private ?array $tools;
 
     #[OneToMany(targetEntity: HomePreparation::class, mappedBy: 'activity',cascade: ['persist', 'remove'])]

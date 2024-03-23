@@ -11,6 +11,9 @@ $router->addRoute('GET', '/', 'Home@index');
 $router->addRoute('GET','/login','Login@login');
 $router->addRoute('POST','/login','Auth@login');
 $router->addRoute('GET', '/logout', 'Auth@logout');
+
+//activity api routes
+$router->addRoute('POST','/api/activity','Activity@post');
 // Add more routes as needed
 
 //add routers for open api connection

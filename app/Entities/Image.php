@@ -10,7 +10,7 @@ class Image extends Entities
     #[Column(name: 'uuid', type: 'string'), Id]
     #[GeneratedValue(strategy: "CUSTOM"), CustomIdGenerator(class: UuidGenerator::class)]
     private string $uuid;
-    #[Column(name: 'low_res')]
+    #[Column(name: 'low_res',nullable: true)]
     private ?string $lowRes;
 
     #[Column(name: 'high_res')]

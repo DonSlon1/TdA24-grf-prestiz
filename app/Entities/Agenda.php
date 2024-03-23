@@ -20,7 +20,7 @@ class Agenda extends Entities
     private int $duration;
     #[Column(name: 'title')]
     private string $title;
-    #[Column(name: 'description')]
+    #[Column(name: 'description',nullable: true)]
     private ?string $description;
 
     public function getUuid() : string

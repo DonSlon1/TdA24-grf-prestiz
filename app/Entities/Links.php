@@ -16,7 +16,7 @@
         #[Column(name: 'uuid', type: 'string'), Id]
         #[GeneratedValue(strategy: "CUSTOM"), CustomIdGenerator(class: UuidGenerator::class)]
         private string $uuid;
-        #[Column(name: 'title')]
+        #[Column(name: 'title',nullable: true)]
         private ?string $title;
 
         #[Column(name: 'url')]

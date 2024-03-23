@@ -20,10 +20,10 @@ class HomePreparation extends Entities
     #[Column(name: 'title')]
     private string $title;
 
-    #[Column(name: 'warn')]
+    #[Column(name: 'warn',nullable: true)]
     private ?string $warn;
 
-    #[Column(name: 'note')]
+    #[Column(name: 'note',nullable: true)]
     private ?string $note;
 
     public function getUuid() : string
