@@ -6,7 +6,7 @@
     <link href="/icon/TdA_sipka/png/TdA_sipka_cernomodra.png" rel="icon" type="image/x-icon"/>
     <link href="/icon/TdA_sipka/png/TdA_sipka_cernomodra.png" rel="shortcut icon" type="image/x-icon"/>
     <link href="/css/style.css" rel="stylesheet">
-    <script defer src="/js/lektor/lektor.js"></script>
+    <script defer src="/js/main.js"></script>
     <title>Úvod</title>
 </head>
 <body class="background <?php echo ($_COOKIE['theme'] ?? '') == 'disabled' ? 'dark-mode' : '' ?>">
@@ -22,7 +22,7 @@
     <h2>Zábavné učení díky jasného plánu</h2>
 
     <div class="div-line">
-        <a class="large button" href="/lektori">Hledat aktivitu</a>
+        <a class="large button" href="/aktivity">Hledat aktivitu</a>
         <a class="large button" href="/lektori">Vytvořit aktivitu</a>
     </div>
 

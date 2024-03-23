@@ -4,6 +4,7 @@ require "../vendor/autoload.php";
 
 $router = new Core\Router();
 $router->addRoute('GET', "/chat", 'ChatInterface@chat');
+$router->addRoute('GET', "/aktivity", 'Activities@allActivities');
 $router->addRoute('GET', '/', 'Home@index');
 // Add more routes as needed
 
